@@ -22,8 +22,17 @@
 </template>
 
 <script setup>
+// imports
 import { useToast } from "vue-toastification";
+import { defineProps } from "vue";
 
+// props
+const props = defineProps({
+  addTransaction: Function,
+});
+const { addTransaction } = props;
+
+// states
 const toast = useToast();
 
 const onSubmit = () => {
@@ -37,7 +46,8 @@ const onSubmit = () => {
     amount: amount.value,
   };
 
-  console.log("payload", payload);
+  addTransaction(payload);
+
   text.value = "";
   amount.value = "";
 };
