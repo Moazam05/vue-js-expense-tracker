@@ -21,6 +21,28 @@
   </form>
 </template>
 
+<script setup>
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
+
+const onSubmit = () => {
+  if (text.value === "" || amount.value === "") {
+    toast.error("Both fields must be filled");
+    return;
+  }
+
+  const payload = {
+    text: text.value,
+    amount: amount.value,
+  };
+
+  console.log("payload", payload);
+  text.value = "";
+  amount.value = "";
+};
+</script>
+
 <script>
 export default {
   name: "AddTransaction",
